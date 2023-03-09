@@ -45,16 +45,18 @@ public class UsersAccess {
             int userID = 0;
             JDBC.openConnection();
             String query_string = "SELECT * FROM client_schedule.users WHERE User_Name = '" + username + "' AND Password = '" + password + "' LIMIT 1";
-            System.out.println(query_string);
+            //System.out.println(query_string);
             PreparedStatement ps = connection.prepareStatement(query_string);
             ResultSet rs = ps.executeQuery();
 
 
             while (rs.next()) {
                 userID = rs.getInt("User_ID");
-                System.out.println(userID);
+                //System.out.println(userID);
             }
+            JDBC.closeConnection();
             return userID;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

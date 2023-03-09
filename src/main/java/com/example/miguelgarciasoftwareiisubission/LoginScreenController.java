@@ -64,9 +64,12 @@ public class LoginScreenController {
                 //stage.setScene(new Scene( scene));
                 stage.setScene(new Scene((Parent) scene));
                 stage.show();
+            } else if (userID == 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Input Error");
+                alert.setContentText("Please check User Name and Password. \n" + "If error persist, please contact support.");
+                alert.showAndWait();
             }
-
-
 
 
         } catch (NumberFormatException e) {
