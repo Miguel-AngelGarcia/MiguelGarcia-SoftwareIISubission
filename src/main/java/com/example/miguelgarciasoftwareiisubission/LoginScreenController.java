@@ -9,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Box;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import java.time.ZoneId;
 import java.time.format.TextStyle;
@@ -23,6 +26,12 @@ public class LoginScreenController {
 
     @FXML
     private Label timezone;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private ImageView sadCat;
+    @FXML
+    private Rectangle errorBox;
 
     ObservableList<String> languages = FXCollections.observableArrayList("English", "French");
     @FXML
@@ -65,10 +74,9 @@ public class LoginScreenController {
                 stage.setScene(new Scene((Parent) scene));
                 stage.show();
             } else if (userID == 0) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Input Error");
-                alert.setContentText("Please check User Name and Password. \n" + "If error persist, please contact support.");
-                alert.showAndWait();
+                errorLabel.setOpacity(1.0);
+                sadCat.setOpacity(1.0);
+                errorBox.setOpacity(1.0);
             }
 
 

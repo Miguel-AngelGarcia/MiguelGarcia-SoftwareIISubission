@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.LoginScreenController">
@@ -25,7 +26,7 @@
                         <Insets />
                      </StackPane.margin>
                   </Rectangle>
-                  <Button fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOnButton" prefHeight="50.0" prefWidth="146.0" text="Sign on" textFill="#989898" StackPane.alignment="CENTER">
+                  <Button id="sign in" fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOnButton" prefHeight="50.0" prefWidth="146.0" text="Sign on" textFill="#989898" StackPane.alignment="CENTER">
                      <StackPane.margin>
                         <Insets top="100.0" />
                      </StackPane.margin>
@@ -40,6 +41,31 @@
                         <Insets bottom="60.0" />
                      </StackPane.margin>
                   </TextField>
+                  <Rectangle fx:id="errorBox" arcHeight="10.0" arcWidth="10.0" fill="#e4e4e4" height="18.0" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="285.0">
+                     <StackPane.margin>
+                        <Insets top="180.0" />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <HBox id="Error Box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="285.0">
+                     <children>
+                        <ImageView fx:id="sadCat" fitHeight="25.0" fitWidth="18.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Sad%203.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="if error" fx:id="errorLabel" alignment="CENTER" opacity="0.0" prefHeight="17.0" prefWidth="243.0" text="Please enter a valid Username or Password" textFill="#e197b9">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets top="180.0" />
+                     </StackPane.margin>
+                     <padding>
+                        <Insets left="9.0" />
+                     </padding>
+                  </HBox>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="142.0" StackPane.alignment="CENTER">
                      <children>
                         <Text id="Language" fill="#989898" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:" wrappingWidth="68.21630859375">
