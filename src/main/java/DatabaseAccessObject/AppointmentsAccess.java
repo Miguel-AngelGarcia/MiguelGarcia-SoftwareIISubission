@@ -36,8 +36,8 @@ public class AppointmentsAccess {
             Appointments appointment = new Appointments(appointmentID, appointmentTitle, appointmentDescription,
                     appointmentLocation, appointmentContactID, appointmentType, appointmentStart, appointmentEnd,
                     appointmentCustomerID, appointmentUserID);
+
             appointmentsObservableList.add(appointment);
-            System.out.println(appointmentLocation);
 
         } // end of while loop
 

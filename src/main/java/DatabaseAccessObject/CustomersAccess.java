@@ -37,6 +37,7 @@ public class CustomersAccess {
 
             Customers customer = new Customers(customerID, customerName, customerAddress, customerPostalCode,
                     customerPhone, customerDivisionID);
+
             customersObservableList.add(customer);
 
         } // end of while loop
@@ -45,5 +46,6 @@ public class CustomersAccess {
         return  customersObservableList;
     }   // END of  ObservableList<Customers> function
 
+    //should we add the delete appointment action here?
 
 }

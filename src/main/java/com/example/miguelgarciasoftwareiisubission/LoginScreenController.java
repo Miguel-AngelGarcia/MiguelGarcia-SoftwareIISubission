@@ -1,5 +1,6 @@
 package com.example.miguelgarciasoftwareiisubission;
 
+import DatabaseAccessObject.UsersAccess;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,15 +51,22 @@ public class LoginScreenController {
             String currPass = password.getText();
 
 
-            //testing to see if getting user input is there
-            System.out.println(currUser);
-            System.out.print(currPass);
+            /*testing to see if getting user input is there
+             *System.out.println(currUser);
+             *System.out.print(currPass);
+             **/
 
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            Object scene = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
-            //stage.setScene(new Scene( scene));
-            stage.setScene(new Scene((Parent) scene));
-            stage.show();
+            int userID = UsersAccess.credentialsValidation(currUser, currPass);
+
+            if (userID > 0) {
+                Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                Object scene = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+                //stage.setScene(new Scene( scene));
+                stage.setScene(new Scene((Parent) scene));
+                stage.show();
+            }
+
+
 
 
         } catch (NumberFormatException e) {
