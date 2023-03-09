@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="680.0" prefWidth="1317.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.DashboardController">
+   <children>
+      <ImageView fitHeight="218.0" fitWidth="186.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Teto.png" />
+         </image></ImageView>
+      <TabPane layoutX="24.0" layoutY="200.0" prefHeight="605.0" prefWidth="1257.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab id="Appointments" text="Appointments">
+            <content>
+              <AnchorPane id="Apoitments" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="dashboardAppointmentTable" layoutX="6.0" prefHeight="367.0" prefWidth="1252.0">
+                          <columns>
+                            <TableColumn id="Appt ID" fx:id="apptIdcolumn" prefWidth="92.75743103027344" text="Appt. ID" />
+                            <TableColumn id="Title" fx:id="apptTitleColumn" prefWidth="142.6851348876953" text="Title" />
+                              <TableColumn id="Desc." fx:id="apptDescColumn" prefWidth="200.31488037109375" text="Description" />
+                              <TableColumn id="Location" fx:id="appLocationColumn" minWidth="0.0" prefWidth="91.10650634765625" text="Location" />
+                              <TableColumn id="Contact" fx:id="apptContactColumn" prefWidth="101.47235107421875" text="Contact" />
+                              <TableColumn id="Type" fx:id="apptTypeColumn" prefWidth="117.9599609375" text="Type" />
+                              <TableColumn id="Start" fx:id="apptStartColumn" prefWidth="141.872314453125" text="Start" />
+                              <TableColumn id="End" fx:id="appEndColumn" prefWidth="138.627685546875" text="End" />
+                              <TableColumn id="CustomerID" fx:id="apptCustId" prefWidth="121.01416015625" text="Customer ID" />
+                              <TableColumn id="UserID" fx:id="apptUserID" prefWidth="103.05419921875" text="User ID" />
+                          </columns>
+                        </TableView>
+                        <Button id="Add Customer" fx:id="addAppointmentButton" layoutX="6.0" layoutY="367.0" mnemonicParsing="false" onAction="#addAppointmentButton" prefHeight="43.0" prefWidth="136.0" text="Add Appointment" AnchorPane.topAnchor="372.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab id="Customer" text="Customers">
+            <content>
+              <AnchorPane id="Customers" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="6.0" prefHeight="367.0" prefWidth="1120.0">
+                           <columns>
+                              <TableColumn id="Appt ID" prefWidth="92.75743103027344" text="Appt. ID" />
+                              <TableColumn id="Title" prefWidth="142.6851348876953" text="Title" />
+                              <TableColumn id="Desc." prefWidth="200.31488037109375" text="Description" />
+                              <TableColumn id="Location" minWidth="0.0" prefWidth="91.10650634765625" text="Location" />
+                              <TableColumn id="Contact" prefWidth="101.47235107421875" text="Contact" />
+                              <TableColumn id="Type" prefWidth="100.1788330078125" text="Type" />
+                              <TableColumn id="Start" prefWidth="96.6319580078125" text="Start" />
+                              <TableColumn id="End" prefWidth="109.74468994140625" text="End" />
+                              <TableColumn id="CustomerID" prefWidth="103.189208984375" text="Customer ID" />
+                              <TableColumn id="UserID" prefWidth="84.27880859375" text="User ID" />
+                           </columns>
+                        </TableView>
+                        <Button id="Add Customer" fx:id="apptButton" layoutX="6.0" layoutY="367.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="136.0" text="Add Customer" AnchorPane.topAnchor="372.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

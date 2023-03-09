@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.LoginScreenController">
+   <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="532.0" snapToPixel="false">
+         <children>
+            <StackPane prefHeight="588.0" prefWidth="532.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#1f93ff00" height="505.0" stroke="#8bc8ff" strokeType="INSIDE" strokeWidth="2.0" width="369.0">
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Rectangle>
+                  <Button fx:id="loginButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#signOnButton" prefHeight="50.0" prefWidth="146.0" text="Sign on" textFill="#989898" StackPane.alignment="CENTER">
+                     <StackPane.margin>
+                        <Insets top="100.0" />
+                     </StackPane.margin>
+                  </Button>
+                  <TextField id="Username" fx:id="userName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="296.0" promptText="Username" StackPane.alignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="120.0" />
+                     </StackPane.margin>
+                  </TextField>
+                  <TextField id="Password" fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="296.0" promptText="Password" StackPane.alignment="CENTER">
+                     <StackPane.margin>
+                        <Insets bottom="60.0" />
+                     </StackPane.margin>
+                  </TextField>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="142.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Text id="Language" fill="#989898" strokeType="OUTSIDE" strokeWidth="0.0" text="Language:" wrappingWidth="68.21630859375">
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin></Text>
+                        <ChoiceBox id="Language Box" fx:id="languageBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="74.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets top="260.0" />
+                     </StackPane.margin>
+                  </HBox>
+                  <ImageView fitHeight="129.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                     <image>
+                        <Image url="@Teto.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="300.0" left="30.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="189.0" StackPane.alignment="CENTER">
+                     <children>
+                        <Text id="Location" fill="#989898" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:" wrappingWidth="57.21630859375" />
+                        <Label fx:id="timezone" prefHeight="17.0" prefWidth="85.0" text="TimeZone" textFill="#989898" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets left="200.0" top="480.0" />
+                     </StackPane.margin>
+                  </HBox>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
