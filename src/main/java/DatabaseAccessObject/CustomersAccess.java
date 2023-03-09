@@ -17,7 +17,7 @@ import static helper.JDBC.connection;
 public class CustomersAccess {
 
     public static ObservableList<Customers> getCustomers(/*Connection connection*/) throws SQLException {
-
+        //test
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
         JDBC.openConnection();
 
