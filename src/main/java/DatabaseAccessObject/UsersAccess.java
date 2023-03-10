@@ -51,8 +51,10 @@ public class UsersAccess {
 
 
             while (rs.next()) {
-                userID = rs.getInt("User_ID");
-                //System.out.println(userID);
+                //added to make password test case sensitive
+                if (rs.getString("Password").equals(password))
+                    userID = rs.getInt("User_ID");
+                    //System.out.println(userID);
             }
             JDBC.closeConnection();
             return userID;

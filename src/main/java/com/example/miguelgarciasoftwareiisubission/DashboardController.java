@@ -43,6 +43,7 @@ public class DashboardController {
     private Button addAppointmentButton;
     @FXML private TabPane tabPane;
     @FXML private Tab appointmentTab;
+    @FXML private Button signOutButton;
 
     //@FXML
     //private TableView<Customers> dashboardCustomerTable;
@@ -83,4 +84,13 @@ public class DashboardController {
         window.setScene(scene);
         window.show();
     }
+
+    @FXML
+    void  signOutButtonClick(ActionEvent event) throws Exception {
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Object scene = FXMLLoader.load(getClass().getResource("LoginScreen.fxml"));
+        stage.setScene(new Scene((Parent) scene));
+        stage.show();
+    }
+
 }

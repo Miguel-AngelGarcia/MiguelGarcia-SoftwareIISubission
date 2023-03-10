@@ -41,26 +41,26 @@
                         <Insets bottom="60.0" />
                      </StackPane.margin>
                   </TextField>
-                  <Rectangle fx:id="errorBox" arcHeight="10.0" arcWidth="10.0" fill="#e4e4e4" height="18.0" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="285.0">
+                  <Rectangle fx:id="errorBox" arcHeight="10.0" arcWidth="10.0" fill="#e4e4e4" height="26.0" opacity="0.0" stroke="TRANSPARENT" strokeType="INSIDE" width="291.0">
                      <StackPane.margin>
-                        <Insets top="180.0" />
+                        <Insets top="190.0" />
                      </StackPane.margin>
                   </Rectangle>
-                  <HBox id="Error Box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="285.0">
+                  <HBox id="Error Box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="303.0">
                      <children>
-                        <ImageView fx:id="sadCat" fitHeight="25.0" fitWidth="18.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="sadCat" fitHeight="24.0" fitWidth="26.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                            <image>
                               <Image url="@Sad%203.png" />
                            </image>
                         </ImageView>
-                        <Label id="if error" fx:id="errorLabel" alignment="CENTER" opacity="0.0" prefHeight="17.0" prefWidth="243.0" text="Please enter a valid Username or Password" textFill="#e197b9">
+                        <Label id="if error" fx:id="errorLabel" alignment="CENTER" opacity="0.0" prefHeight="25.0" prefWidth="270.0" text="Please enter a valid Username or Password" textFill="#e197b9" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="System Bold" size="13.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                      <StackPane.margin>
-                        <Insets top="180.0" />
+                        <Insets top="190.0" />
                      </StackPane.margin>
                      <padding>
                         <Insets left="9.0" />

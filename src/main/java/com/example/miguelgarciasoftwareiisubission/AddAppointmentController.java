@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
@@ -28,6 +29,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ListIterator;
+
+import static com.example.miguelgarciasoftwareiisubission.LoginScreenController.getCurrUserID;
 
 /*
 get current time, round to nearest hour
@@ -91,6 +94,9 @@ public class AddAppointmentController {
         endAmPmChoice.setItems(amPmList);
         endAmPmChoice.setValue("AM");
 
+        int currUserID = LoginScreenController.getCurrUserID();
+        userIDLabel.setText(String.valueOf(currUserID));
+
 
         //check to see date and time. If date is the same, will not allow user to select earlier hour
 
@@ -108,6 +114,12 @@ public class AddAppointmentController {
         appointmentIDLabel.setText(stringCurrApptID);
         customerNameField.setItems(allCustomerNamesList);
 
+    }
+    @FXML
+    void customerSelectedGetCustomerID(ActionEvent event) throws IOException, SQLException {
+        String customerName = customerNameField.getValue().toString();
+        int customerID = CustomersAccess.getSelectedCustomerID(customerName);
+        customerIDField.setText(String.valueOf(customerID));
     }
 
     @FXML
@@ -165,7 +177,7 @@ public class AddAppointmentController {
         ps.setInt(12, Integer.parseInt(customerIDField.getText()));
         //ps.setInt(13, Integer.parseInt(contactAccess.findContactID(addAppointmentContact.getValue())));
         //ps.setInt(14, Integer.parseInt(contactAccess.findContactID(userIDLabel.getText())));
-        ps.setInt(13, 1);
+        ps.setInt(13, Integer.parseInt(userIDLabel.getText()));
         ps.setInt(14, Integer.parseInt(contactField.getText()));
 
         //System.out.println("ps " + ps);

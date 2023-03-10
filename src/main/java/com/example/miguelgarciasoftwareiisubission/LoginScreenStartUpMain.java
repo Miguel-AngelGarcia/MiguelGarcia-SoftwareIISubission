@@ -4,7 +4,10 @@ import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import javax.xml.catalog.CatalogFeatures;
 import java.time.ZoneId;
 
 import java.io.IOException;
@@ -26,10 +29,13 @@ public class LoginScreenStartUpMain extends Application {
     }*/
 
     public void start(Stage stage) throws IOException {
-        JDBC.openConnection();
-        JDBC.closeConnection();
+
         FXMLLoader fxmlLoader = new FXMLLoader(LoginScreenController.class.getResource("LoginScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        Image image = new Image(getClass().getResourceAsStream("Teto.png"));
+        stage.getIcons().add(image);
+
+
         stage.setTitle("I love my girlfriend!");
         stage.setMinWidth(533);
         stage.setMinHeight(590);

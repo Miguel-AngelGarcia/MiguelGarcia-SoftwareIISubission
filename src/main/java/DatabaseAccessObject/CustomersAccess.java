@@ -47,5 +47,19 @@ public class CustomersAccess {
     }   // END of  ObservableList<Customers> function
 
     //should we add the delete appointment action here?
+    public static int getSelectedCustomerID (String customerName) throws SQLException{
+        int customerID = 0;
+        
+        JDBC.openConnection();
+        String query_string = "SELECT Customer_ID FROM client_schedule.customers WHERE Customer_Name = '" + customerName + "' LIMIT 1";
+        PreparedStatement ps = connection.prepareStatement(query_string);
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()) {
+            customerID = rs.getInt("Customer_ID");
+        }
+
+        return customerID;
+    }
 
 }

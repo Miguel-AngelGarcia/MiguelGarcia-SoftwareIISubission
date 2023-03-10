@@ -39,7 +39,7 @@
       <VBox id="Top" layoutX="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="622.0">
          <children>
             <TextField id="Apointment Title" fx:id="appointmentTitleField" prefHeight="26.0" prefWidth="622.0" promptText="Add Title" />
-            <ComboBox fx:id="customerNameField" editable="true" onKeyTyped="#keyEnteredCustomerNameSearch" prefHeight="26.0" prefWidth="623.0" promptText="Customer Name" visibleRowCount="5">
+            <ComboBox fx:id="customerNameField" editable="true" onAction="#customerSelectedGetCustomerID" onKeyTyped="#keyEnteredCustomerNameSearch" prefHeight="26.0" prefWidth="623.0" promptText="Customer Name" visibleRowCount="5">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></ComboBox>

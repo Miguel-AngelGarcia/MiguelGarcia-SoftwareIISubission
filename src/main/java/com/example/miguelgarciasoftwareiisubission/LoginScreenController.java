@@ -18,7 +18,7 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class LoginScreenController {
-
+    private static int currUserID;
     @FXML
     private TextField userName;
     @FXML
@@ -36,6 +36,9 @@ public class LoginScreenController {
     ObservableList<String> languages = FXCollections.observableArrayList("English", "French");
     @FXML
     private ChoiceBox languageBox;
+
+    public LoginScreenController() {
+    }
 
     @FXML
     void initialize () {
@@ -68,6 +71,7 @@ public class LoginScreenController {
             int userID = UsersAccess.credentialsValidation(currUser, currPass);
 
             if (userID > 0) {
+                currUserID = userID;
                 Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
                 Object scene = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
                 //stage.setScene(new Scene( scene));
@@ -90,6 +94,10 @@ public class LoginScreenController {
             alert.showAndWait();
             return;
         }
+    }
+
+    public static int getCurrUserID() {
+        return currUserID;
     }
 
 }
