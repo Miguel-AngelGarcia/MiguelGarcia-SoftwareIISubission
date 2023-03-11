@@ -2,6 +2,7 @@ package com.example.miguelgarciasoftwareiisubission;
 import DatabaseAccessObject.AppointmentsAccess;
 import DatabaseAccessObject.ContactsAccess;
 import DatabaseAccessObject.CustomersAccess;
+import DatabaseAccessObject.UsersAccess;
 import Model.Appointments;
 import Model.Contacts;
 import Model.Customers;
@@ -9,37 +10,31 @@ import helper.JDBC;
 import helper.TimeLogicConverter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ChoiceBoxListCell;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ListIterator;
-
-import static com.example.miguelgarciasoftwareiisubission.LoginScreenController.getCurrUserID;
+import java.util.ResourceBundle;
 
 /*
 get current time, round to nearest hour
 Then autofill?
 */
 
-public class AddAppointmentController {
+public class ModifyAppointmentController implements Initializable {
 
     @FXML private Label appointmentIDLabel;
     @FXML private Label userIDLabel;
@@ -80,21 +75,63 @@ public class AddAppointmentController {
         ObservableList<String> allCustomerNamesList = FXCollections.observableArrayList();
         allCustomersList.stream().map(Customers::getCustomerName).forEach(allCustomerNamesList::add);
     }*/
+    public void getAppointmentInfo(Appointments selectedAppointment) throws SQLException, IOException {
+        appointmentIDLabel.setText(String.valueOf(selectedAppointment.getAppointmentID()));
+        userIDLabel.setText(String.valueOf(selectedAppointment.getAppointmentUserID()));
+        appointmentTitleField.setText(selectedAppointment.getAppointmentTitle());
+        //first set CustomerID and then get Name from DB, same for Contact
+        customerIDField.setText(String.valueOf(selectedAppointment.getAppointmentCustomerID()));
+        locationField.setText(selectedAppointment.getAppointmentLocation());
+        typeField.setText(selectedAppointment.getAppointmentType());
+        descriptionField.setText(selectedAppointment.getAppointmentDescription());
+
+        //get time from DB, convert to local time, then split into Hour, Minute, AM/PM
+        LocalDateTime apptStartTime = selectedAppointment.getAppointmentStart();
+        LocalDateTime apptEndTime = selectedAppointment.getAppointmentEnd();
+
+        //sets start time from appointment
+        String[] appStartDateTime = TimeLogicConverter.deconvertTime(apptStartTime);
+        boolean startPmFlag = Integer.parseInt(appStartDateTime[1]) > 12;
+
+        startDatePicker.setValue(LocalDate.parse(appStartDateTime[0]));
+        startHourChoice.setValue(appStartDateTime[1]);
+        startMinuteChoice.setValue(appStartDateTime[2]);
+        if (startPmFlag) {
+            startAmPmChoice.setValue("PM");
+            int tempHour = Integer.parseInt(appStartDateTime[1]) - 12;
+            startHourChoice.setValue(String.valueOf(tempHour));
+        }
+
+        //sets end time from appointment
+        String[] endStartDateTime = TimeLogicConverter.deconvertTime(apptEndTime);
+        boolean endPmFlag = Integer.parseInt(endStartDateTime[1]) > 12;
+
+        endDatePicker.setValue(LocalDate.parse(endStartDateTime[0]));
+        endHourChoice.setValue(endStartDateTime[1]);
+        endMinuteChoice.setValue(endStartDateTime[2]);
+        if (endPmFlag) {
+            endAmPmChoice.setValue("PM");
+            int tempHour = Integer.parseInt(endStartDateTime[1]) - 12;
+            endHourChoice.setValue(String.valueOf(tempHour));
+        }
+
+       customerAppointmentGetCustomerName(selectedAppointment.getAppointmentCustomerID());
+       contactAppointmentGetContactName(selectedAppointment.getAppointmentContactID());
+
+
+    }
 
     @FXML
-    void initialize() throws SQLException {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
         //sets start hour times
         startHourChoice.setItems(hourList);
-        startHourChoice.setValue("12");
         startMinuteChoice.setItems(minuteList);
-        startMinuteChoice.setValue("00");
         startAmPmChoice.setItems(amPmList);
         startAmPmChoice.setValue("AM");
         //sets start hour times
         endHourChoice.setItems(hourList);
-        endHourChoice.setValue("12");
         endMinuteChoice.setItems(minuteList);
-        endMinuteChoice.setValue("00");
         endAmPmChoice.setItems(amPmList);
         endAmPmChoice.setValue("AM");
 
@@ -104,14 +141,33 @@ public class AddAppointmentController {
 
         //check to see date and time. If date is the same, will not allow user to select earlier hour
 
-        ObservableList<Customers> allCustomersList = CustomersAccess.getCustomers();
-        ObservableList<Appointments> allAppointmentsList = AppointmentsAccess.getAppointments();
-        ObservableList<Contacts> allContactsList = ContactsAccess.getContacts();
+        ObservableList<Customers> allCustomersList = null;
+        try {
+            allCustomersList = CustomersAccess.getCustomers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            ObservableList<Appointments> allAppointmentsList = AppointmentsAccess.getAppointments();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<Contacts> allContactsList = null;
+        try {
+            allContactsList = ContactsAccess.getContacts();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         ObservableList<String> allCustomerNamesList = FXCollections.observableArrayList();
         ObservableList<String> allContactNamesList = FXCollections.observableArrayList();
 
-        int intCurrApptID = AppointmentsAccess.generateAppointmentID();
+        int intCurrApptID = 0;
+        try {
+            intCurrApptID = AppointmentsAccess.generateAppointmentID();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         String stringCurrApptID = String.valueOf(intCurrApptID);
         /*FilteredList<Customers> customerNamesList = new FilteredList<>(allCustomersList,
                 i-> i.getCustomerName() ==);*/
@@ -123,6 +179,8 @@ public class AddAppointmentController {
         contactField.setItems(allContactNamesList);
 
     }
+
+
     @FXML
     void customerSelectedGetCustomerID(ActionEvent event) throws IOException, SQLException {
         String customerName = customerNameField.getValue().toString();
@@ -140,13 +198,31 @@ public class AddAppointmentController {
 
     }
 
+
     @FXML
-    void addAppointmentSaveButton(ActionEvent event) throws IOException, SQLException {
+    void customerAppointmentGetCustomerName(int customerID) throws IOException, SQLException {
+        String customerName = CustomersAccess.getSelectedCustomerName(customerID);
+        customerNameField.setValue(customerName);
+
+    }
+
+    @FXML
+    void contactAppointmentGetContactName(int contactID) throws IOException, SQLException {
+        contactNameID = contactID;
+        String contactName = ContactsAccess.getSelectedContactName(contactID);
+        contactField.setValue(contactName);
+
+    }
+
+
+
+    @FXML
+    void modifyAppointmentSaveButton(ActionEvent event) throws IOException, SQLException {
         //get something to count total user IDs, then +1 to generate appointment ID
 
-        String insertStatement = "INSERT INTO client_schedule.appointments (Appointment_ID, Title, Description, Location, " +
-                "Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String insertStatement = "UPDATE client_schedule.appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, " +
+        "Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ?  WHERE APPOINTMENT_ID = ?";
+
         JDBC.openConnection();
         JDBC.setPreparedStatement(JDBC.connection, insertStatement);
         PreparedStatement ps = JDBC.getPreparedStatement();
@@ -177,30 +253,26 @@ public class AddAppointmentController {
         String startDateTimeStringUTC = TimeLogicConverter.convertDateTimeToUTC(startDateTimeString);
         String endDateTimeStringUTC = TimeLogicConverter.convertDateTimeToUTC(endDateTimeString);
 
-
-
-
-
-        ps.setInt(1, currApptID);
-        ps.setString(2, currApptTitle);
-        ps.setString(3, currApptDescription);
-        ps.setString(4, currApptLocation);
-        ps.setString(5, currApptType);
+        ps.setString(1, currApptTitle);
+        ps.setString(2, currApptDescription);
+        ps.setString(3, currApptLocation);
+        ps.setString(4, currApptType);
         //ps.setTimestamp(6, Timestamp.valueOf(startLocalDateTimeToAdd));
         //ps.setTimestamp(6, Timestamp.valueOf(converted to UTC start date));
         //ps.setTimestamp(7, Timestamp.valueOf(conerted to UTS end date));
-        ps.setTimestamp(6, Timestamp.valueOf(startDateTimeStringUTC));
-        ps.setTimestamp(7, Timestamp.valueOf(endDateTimeStringUTC));
+        ps.setTimestamp(5, Timestamp.valueOf(startDateTimeStringUTC));
+        ps.setTimestamp(6, Timestamp.valueOf(endDateTimeStringUTC));
         //need to verify this is correct
-        ps.setTimestamp(8, Timestamp.valueOf(LocalDateTime.now()));
-        ps.setString(9, "admin");
-        ps.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now()));
-        ps.setInt(11, 1);
-        ps.setInt(12, Integer.parseInt(customerIDField.getText()));
+        ps.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
+        ps.setString(8, "admin");
+        ps.setTimestamp(9, Timestamp.valueOf(LocalDateTime.now()));
+        ps.setInt(10, 1);
+        ps.setInt(11, Integer.parseInt(customerIDField.getText()));
         //ps.setInt(13, Integer.parseInt(contactAccess.findContactID(addAppointmentContact.getValue())));
         //ps.setInt(14, Integer.parseInt(contactAccess.findContactID(userIDLabel.getText())));
-        ps.setInt(13, Integer.parseInt(userIDLabel.getText()));
-        ps.setInt(14, contactNameID);
+        ps.setInt(12, Integer.parseInt(userIDLabel.getText()));
+        ps.setInt(13, contactNameID);
+        ps.setInt(14, currApptID);
 
         //System.out.println("ps " + ps);
         ps.execute();
@@ -215,7 +287,7 @@ public class AddAppointmentController {
 
     }
 
-    @FXML public void addAppointmentCancelButton (ActionEvent event) throws IOException {
+    @FXML public void modifyAppointmentCancelButton (ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         Object scene = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         stage.setScene(new Scene((Parent) scene));
@@ -255,6 +327,8 @@ public class AddAppointmentController {
         */
 
     }
+
+
 
     /*
     @FXML

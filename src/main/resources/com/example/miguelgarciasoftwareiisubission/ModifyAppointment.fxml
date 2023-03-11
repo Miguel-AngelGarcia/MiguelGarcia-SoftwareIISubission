@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="660.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.AddAppointmentController">
+<AnchorPane prefHeight="660.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.ModifyAppointmentController">
    <children>
       <ImageView fitHeight="175.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="810.0">
          <image>
@@ -44,7 +44,7 @@
       </VBox>
       <VBox id="Top" layoutX="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="622.0">
          <children>
-            <TextField id="Apointment Title" fx:id="appointmentTitleField" prefHeight="26.0" prefWidth="622.0" promptText="Add Title" />
+            <TextField id="Apointment Title" fx:id="appointmentTitleField" prefHeight="26.0" prefWidth="622.0" promptText="Modify Title" />
             <ComboBox id="Customer Name" fx:id="customerNameField" editable="true" onAction="#customerSelectedGetCustomerID" onKeyTyped="#keyEnteredCustomerNameSearch" prefHeight="26.0" prefWidth="623.0" promptText="Customer Name" visibleRowCount="5">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -109,8 +109,8 @@
          </children></VBox>
       <VBox layoutX="820.0" layoutY="30.0" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Button id="Save Button" fx:id="saveButton" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addAppointmentSaveButton" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #8bc8ff;" text="Save" textFill="WHITE" />
-            <Button id="Cancel Button" fx:id="cancelButton" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addAppointmentCancelButton" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #afaeae;" text="Cancel" textFill="WHITE">
+            <Button id="Save Button" fx:id="saveButton" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifyAppointmentSaveButton" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #8bc8ff;" text="Save" textFill="WHITE" />
+            <Button id="Cancel Button" fx:id="cancelButton" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifyAppointmentCancelButton" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: #afaeae;" text="Cancel" textFill="WHITE">
                <VBox.margin>
                   <Insets top="11.0" />
                </VBox.margin>

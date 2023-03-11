@@ -22,7 +22,7 @@ public class LoginScreenController {
     @FXML
     private TextField userName;
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private Label timezone;

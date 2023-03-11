@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -8,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="680.0" prefWidth="1317.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miguelgarciasoftwareiisubission.DashboardController">
    <children>
@@ -35,7 +37,21 @@
                               <TableColumn id="UserID" fx:id="apptUserID" prefWidth="103.05419921875" text="User ID" />
                           </columns>
                         </TableView>
-                        <Button id="Add Customer" fx:id="addAppointmentButton" layoutX="6.0" layoutY="367.0" mnemonicParsing="false" onAction="#addAppointmentButton" prefHeight="43.0" prefWidth="136.0" text="Add Appointment" AnchorPane.topAnchor="372.0" />
+                        <HBox layoutX="6.0" layoutY="371.0" prefHeight="44.0" prefWidth="674.0">
+                           <children>
+                              <Button id="Add Appointment" fx:id="addAppointmentButton" mnemonicParsing="false" onAction="#addAppointmentButton" prefHeight="43.0" prefWidth="136.0" text="Add Appointment" />
+                              <Button id="Modify Appointment" fx:id="modifyAppointmentButton" mnemonicParsing="false" onAction="#modifyAppointmentButton" prefHeight="43.0" prefWidth="136.0" text="Modify Appointment">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="Delete Apointment" fx:id="deleteAppointmentButton" mnemonicParsing="false" onAction="#deleteAppointmentButton" prefHeight="43.0" prefWidth="136.0" style="-fx-background-color: #e197b9 #e197b9;" text="Delete Appointment">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
             </content>
@@ -65,6 +81,6 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="signOutButton" layoutX="1192.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #e197b9;" text="Sign out" />
+      <Button fx:id="signOutButton" layoutX="1192.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #afaeae;" text="Sign out" textFill="WHITE" />
    </children>
 </AnchorPane>

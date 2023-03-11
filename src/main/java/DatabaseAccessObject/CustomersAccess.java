@@ -46,10 +46,11 @@ public class CustomersAccess {
         return  customersObservableList;
     }   // END of  ObservableList<Customers> function
 
-    //should we add the delete appointment action here?
+
     public static int getSelectedCustomerID (String customerName) throws SQLException{
+
         int customerID = 0;
-        
+
         JDBC.openConnection();
         String query_string = "SELECT Customer_ID FROM client_schedule.customers WHERE Customer_Name = '" + customerName + "' LIMIT 1";
         PreparedStatement ps = connection.prepareStatement(query_string);
@@ -58,8 +59,27 @@ public class CustomersAccess {
         while(rs.next()) {
             customerID = rs.getInt("Customer_ID");
         }
-
+        JDBC.closeConnection();
         return customerID;
     }
+
+    public static String getSelectedCustomerName (int customerID) throws SQLException{
+
+        String customerName = "";
+
+        JDBC.openConnection();
+        String query_string = "SELECT Customer_Name FROM client_schedule.customers WHERE Customer_ID = '" + customerID + "' LIMIT 1";
+        PreparedStatement ps = connection.prepareStatement(query_string);
+        ResultSet rs = ps.executeQuery();
+
+        while(rs.next()) {
+            customerName = rs.getString("Customer_Name");
+        }
+        JDBC.closeConnection();
+        return customerName;
+    }
+
+
+
 
 }
