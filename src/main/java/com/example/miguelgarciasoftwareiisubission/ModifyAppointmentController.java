@@ -220,17 +220,17 @@ public class ModifyAppointmentController implements Initializable {
     void modifyAppointmentSaveButton(ActionEvent event) throws IOException, SQLException {
         //get something to count total user IDs, then +1 to generate appointment ID
 
-        String insertStatement = "UPDATE client_schedule.appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, " +
+        String updateStatement = "UPDATE client_schedule.appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, " +
         "Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ?  WHERE APPOINTMENT_ID = ?";
 
         JDBC.openConnection();
-        JDBC.setPreparedStatement(JDBC.connection, insertStatement);
+        JDBC.setPreparedStatement(JDBC.connection, updateStatement);
         PreparedStatement ps = JDBC.getPreparedStatement();
 
         int currApptID = Integer.parseInt(appointmentIDLabel.getText());
         String currApptTitle = appointmentTitleField.getText();
         String currApptLocation = locationField.getText();
-        String currApptType = typeField.getTypeSelector();
+        String currApptType = typeField.getText();
         String currApptDescription = descriptionField.getText();
         //need to get date from 1 box, Hour, Minute and AM/PM. Then combine
         //start date time

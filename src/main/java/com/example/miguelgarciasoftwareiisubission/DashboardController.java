@@ -1,6 +1,10 @@
 package com.example.miguelgarciasoftwareiisubission;
 
+import DatabaseAccessObject.CustomersAccess;
+import DatabaseAccessObject.DivisionsCountriesAccess;
 import Model.Appointments;
+import Model.Customers;
+import Model.DivisionsCountries;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +23,7 @@ import DatabaseAccessObject.AppointmentsAccess;
 import javafx.stage.Stage;
 
 public class DashboardController {
+    //Appointments Table
     @FXML
     private TableView<Appointments> dashboardAppointmentTable;
     @FXML
@@ -41,12 +46,37 @@ public class DashboardController {
     private TableColumn<Appointments, Integer> apptCustId;
     @FXML
     private TableColumn<Appointments, Integer> apptUserID;
+
+    //Custemrs Table
+    @FXML
+    private TableView<Customers> dashboardCustomerTable;
+    @FXML
+    private TableColumn<Customers, Integer> customerIdcolumn;
+    @FXML
+    private TableColumn<Customers, String> customerNameColumn;
+    @FXML
+    private TableColumn<Customers, String> customerAddress;
+    @FXML
+    private TableColumn<Customers, String> customerPostalCode;
+    @FXML
+    private TableColumn<Customers, Integer> customerStateProvince;
+    @FXML
+    private TableColumn<Customers, String> customerCountry;
+
+
     @FXML
     private Button addAppointmentButton;
     @FXML
     private Button modifyAppointmentButton;
     @FXML
     private Button deleteAppointmentButton;
+    @FXML
+    private Button addCustomerButton;
+    @FXML
+    private Button modifyCustomerButton;
+    @FXML
+    private Button deleteCustomerButton;
+
     @FXML
     private TabPane tabPane;
     @FXML
@@ -55,6 +85,7 @@ public class DashboardController {
     private Button signOutButton;
 
     private Stage stage;
+    private int currentDivisionID;
 
     //@FXML
     //private TableView<Customers> dashboardCustomerTable;
@@ -65,6 +96,7 @@ public class DashboardController {
     @FXML
     public void initialize() throws SQLException {
         try {
+            //add contents to Appointment Table
             ObservableList<Appointments> allAppointmentsList = AppointmentsAccess.getAppointments();
 
             apptIdcolumn.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
@@ -79,6 +111,19 @@ public class DashboardController {
             apptUserID.setCellValueFactory((new PropertyValueFactory<>("appointmentUserID")));
 
             dashboardAppointmentTable.setItems(allAppointmentsList);
+
+            //Adds contents to Customer Table
+            ObservableList<Customers> allCustomersList = CustomersAccess.getCustomers();
+
+            customerIdcolumn.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+            customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+            customerAddress.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+            customerPostalCode.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
+            //will impliment code to get State/Province and Country from divisionID
+            customerStateProvince.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
+            customerCountry.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
+
+            dashboardCustomerTable.setItems(allCustomersList);
 
 
 
@@ -157,6 +202,15 @@ public class DashboardController {
             dashboardAppointmentTable.setItems(allAppointmentsList);
         }
 
+    }
+
+    @FXML
+    void addCustomerButton(ActionEvent event) throws Exception {
+        Parent addCustomers = FXMLLoader.load(getClass().getResource("AddCustomer.fxml"));
+        Scene scene = new Scene(addCustomers);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
     }
 
 }

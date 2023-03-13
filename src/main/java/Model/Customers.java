@@ -7,7 +7,11 @@ public class Customers {
     private String customerAddress;
     private String customerPostalCode;
     private String customerPhone;
-    private int divisionID;
+    private int customerDivisionID;
+    private String customerDivision;
+    private int customerCountryID;
+    private String customerCountry;
+
 
     /**
      * Customer class includes the following parameters. We obtained this list from the database.
@@ -18,17 +22,23 @@ public class Customers {
      * @param customerPostalCode
      * @param customerPhone
      * @param divisionID
+     * @param division
+     * @param countryID
+     * @param country
      * Below are the appropriate setter and getter functions.
      */
     public Customers(int customerID, String customerName, String customerAddress, String customerPostalCode,
-                     String customerPhone, int divisionID) {
+                     String customerPhone, int customerDivisionID, String customerDivision, int customerCountryID, String customerCountry) {
 
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = customerPostalCode;
         this.customerPhone = customerPhone;
-        this.divisionID = divisionID;
+        this.customerDivisionID = customerDivisionID;
+        this.customerDivision = customerDivision;
+        this.customerCountryID = customerCountryID;
+        this.customerCountry = customerCountry;
 
     }
 
@@ -116,16 +126,64 @@ public class Customers {
      *
      * @return
      */
-    public int getDivisionID() {
-        return divisionID;
+    public int getCustomerDivisionID() {
+        return customerDivisionID;
     }
 
     /**
      *
-     * @param divisionID
+     * @param customerDivisionID
      */
-    public void setDivisionID(int divisionID) {
-        this.divisionID = divisionID;
+    public void setDivisionID(int customerDivisionID) {
+        this.customerDivisionID = customerDivisionID;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getCustomerDivision() {
+        return customerDivision;
+    }
+
+    /**
+     *
+     * @param customerDivision
+     */
+    public void setCustomerDivision(String customerDivision) {
+        this.customerDivision = customerDivision;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getCustomerCountryID() {
+        return customerCountryID;
+    }
+
+    /**
+     *
+     * @param customerCountryID
+     */
+    public void setCustomerCountryID(int customerCountryID) {
+        this.customerCountryID = customerCountryID;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getCustomerCountry() {
+        return customerCountry;
+    }
+
+    /**
+     *
+     * @param customerCountry
+     */
+    public void setCustomerCountry(String customerCountry) {
+        this.customerCountry = customerCountry;
     }
 
 }

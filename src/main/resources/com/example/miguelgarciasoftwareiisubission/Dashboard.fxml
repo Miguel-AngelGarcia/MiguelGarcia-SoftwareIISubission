@@ -60,27 +60,37 @@
             <content>
               <AnchorPane id="Customers" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="6.0" prefHeight="367.0" prefWidth="1120.0">
+                        <TableView fx:id="dashboardCustomerTable" layoutX="6.0" prefHeight="367.0" prefWidth="1251.0">
                            <columns>
-                              <TableColumn id="Appt ID" prefWidth="92.75743103027344" text="Appt. ID" />
-                              <TableColumn id="Title" prefWidth="142.6851348876953" text="Title" />
-                              <TableColumn id="Desc." prefWidth="200.31488037109375" text="Description" />
-                              <TableColumn id="Location" minWidth="0.0" prefWidth="91.10650634765625" text="Location" />
-                              <TableColumn id="Contact" prefWidth="101.47235107421875" text="Contact" />
-                              <TableColumn id="Type" prefWidth="100.1788330078125" text="Type" />
-                              <TableColumn id="Start" prefWidth="96.6319580078125" text="Start" />
-                              <TableColumn id="End" prefWidth="109.74468994140625" text="End" />
-                              <TableColumn id="CustomerID" prefWidth="103.189208984375" text="Customer ID" />
-                              <TableColumn id="UserID" prefWidth="84.27880859375" text="User ID" />
+                              <TableColumn id="Customer ID" fx:id="customerIdcolumn" prefWidth="107.12660026550293" text="Customer ID" />
+                              <TableColumn id="Customer Name" fx:id="customerNameColumn" prefWidth="246.02029418945312" text="Customer Name" />
+                              <TableColumn id="Address" fx:id="customerAddress" prefWidth="403.4797668457031" text="Address" />
+                              <TableColumn id="Postal Code" fx:id="customerPostalCode" minWidth="0.0" prefWidth="145.92535400390625" text="Postal Code" />
+                              <TableColumn id="State/Provence" fx:id="customerStateProvince" prefWidth="165.53033447265625" text="State/Provence" />
+                              <TableColumn id="Country" fx:id="customerCountry" prefWidth="185.4696044921875" text="Country" />
                            </columns>
                         </TableView>
-                        <Button id="Add Customer" fx:id="apptButton" layoutX="6.0" layoutY="367.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="136.0" text="Add Customer" AnchorPane.topAnchor="372.0" />
+                        <HBox layoutX="6.0" layoutY="371.0" prefHeight="45.0" prefWidth="536.0">
+                           <children>
+                              <Button id="Add Customer" fx:id="addCustomerButton" mnemonicParsing="false" onAction="#addCustomerButton" prefHeight="43.0" prefWidth="136.0" text="Add Customer" />
+                              <Button id="Modify Customer" fx:id="modifyCustomerButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="136.0" text="Modify Customer">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="Delete Customer" fx:id="deleteCustomerButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="136.0" style="-fx-background-color: #e197b9 #e197b9;" text="Delete Customer">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="signOutButton" layoutX="1192.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #afaeae;" text="Sign out" textFill="WHITE" />
+      <Button id="Sign Out" fx:id="signOutButton" layoutX="1192.0" layoutY="19.0" mnemonicParsing="false" onAction="#signOutButtonClick" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #afaeae;" text="Sign out" textFill="WHITE" />
    </children>
 </AnchorPane>
